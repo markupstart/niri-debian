@@ -69,7 +69,7 @@ install_dank_material_shell() {
         apt-get install -y \
         -o Dpkg::Options::=--force-confdef \
         -o Dpkg::Options::=--force-confold \
-        dms accountsservice
+        dms accountsservice ghostty
 
     print_status "Generating starter Dank Material Shell configuration..."
     dms setup
@@ -133,6 +133,20 @@ print_status "Ensuring latest stable Rust toolchain..."
 rustup update stable
 
 print_status "Rust version: $(rustc --version)"
+
+if command -v rmpc &> /dev/null; then
+    print_status "rmpc is already installed. Skipping cargo install."
+else
+    print_status "Installing rmpc with cargo..."
+    cargo install rmpc --locked
+fi
+
+if command -v yazi &> /dev/null && command -v ya &> /dev/null; then
+    print_status "yazi is already installed. Skipping cargo install."
+else
+    print_status "Installing yazi with cargo..."
+    cargo install --force yazi-build
+fi
 
 # Clone niri repository
 NIRI_DIR="$HOME/niri"

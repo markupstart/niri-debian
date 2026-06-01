@@ -1,0 +1,96 @@
+config-notification {
+    disable-failed
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+input {
+    keyboard {
+        xkb {
+        }
+
+        // Enable numlock on startup, omitting this setting disables it.
+        numlock
+    }
+}
+
+overview {
+    workspace-shadow {
+        off
+    }
+}
+
+spawn-sh-at-startup "pkill -u $USER -x pipewire; pipewire"
+spawn-at-startup "pkexec" "swayosd-libinput-backend"
+spawn-at-startup "swayosd-server"
+spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store"
+spawn-at-startup "sh" "-c" "wl-paste --primary --type text --watch cliphist store"
+spawn-at-startup "sh" "-lc" "swww-daemon"
+spawn-at-startup "sh" "-lc" "$HOME/.local/bin/wallrestore.sh"
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+spawn-at-startup "mako"
+spawn-at-startup "vibepanel"
+
+environment {
+  XDG_CURRENT_DESKTOP "niri"
+  QT_QPA_PLATFORM "wayland;xcb"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+  QT_QPA_PLATFORMTHEME "gtk3"
+  QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+  TERMINAL "ghostty"
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+animations {
+    workspace-switch {
+        spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.65 stiffness=923 epsilon=0.001
+    }
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    }
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// Include binds
+
+include  "configs/binds.kdl"
+include  "configs/outputs.kdl"
+include  "configs/colors.kdl"
+include  "configs/layout.kdl"
+include  "configs/windowrules.kdl"

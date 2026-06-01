@@ -14,25 +14,12 @@ binds {
     Super+Alt+L { spawn "swaylock" "-c" "000000"; }
     Mod+Shift+T hotkey-overlay-title="Open Terminal" { spawn "ghostty"; }
     Mod+Space hotkey-overlay-title="Application Launcher" {
-        spawn "dms" "ipc" "call" "spotlight" "toggle";
+        spawn "wofi" "--show" "drun";
     }
     Mod+V hotkey-overlay-title="Clipboard Manager" {
-        spawn "dms" "ipc" "call" "clipboard" "toggle"
+        spawn "/home/mark/.config/niri/scripts/cliphist-wofi.sh";
     }
-    Mod+Shift+M hotkey-overlay-title="Task Manager" {
-        spawn "dms" "ipc" "call" "processlist" "focusOrToggle";
-    }
-
-    Super+X hotkey-overlay-title="Power Menu: Toggle" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
-    Mod+Comma hotkey-overlay-title="Settings" {
-        spawn "dms" "ipc" "call" "settings" "focusOrToggle";
-    }
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-    }
-    Mod+Shift+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
-    Mod+Alt+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
-
+          
     Mod+N { focus-column-first; }
     Mod+M  { focus-column-last; }
 //    Mod+Ctrl+Home { move-column-to-first; }
@@ -49,48 +36,22 @@ binds {
 
     // === Audio Controls ===
     XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "increment" "3";
+        spawn "swayosd-client" "--output-volume" "raise";
     }
     XF86AudioLowerVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "decrement" "3";
+        spawn "swayosd-client" "--output-volume" "lower";
     }
     XF86AudioMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "mute";
+        spawn "swayosd-client" "--output-volume" "mute-toggle";
     }
     XF86AudioMicMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "micmute";
-    }
-		XF86AudioPause allow-when-locked=true {
-		    spawn "dms" "ipc" "call" "mpris" "playPause";
-		}
-		XF86AudioPlay allow-when-locked=true {
-		    spawn "dms" "ipc" "call" "mpris" "playPause";
-		}
-		XF86AudioPrev allow-when-locked=true {
-		    spawn "dms" "ipc" "call" "mpris" "previous";
-		}
-		XF86AudioNext allow-when-locked=true {
-		    spawn "dms" "ipc" "call" "mpris" "next";
-		}
-        Ctrl+XF86AudioRaiseVolume allow-when-locked=true {
-            spawn "dms" "ipc" "call" "mpris" "increment" "3";
-        }
-        Ctrl+XF86AudioLowerVolume allow-when-locked=true {
-            spawn "dms" "ipc" "call" "mpris" "decrement" "3";
-        }
-
-    // === Brightness Controls ===
-    XF86MonBrightnessUp allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
-    }
-    XF86MonBrightnessDown allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
+        spawn "swayosd-client" "--input-volume" "mute-toggle";
     }
 
     // === Window Management ===
     Mod+Q repeat=false { close-window; }
     Mod+F { maximize-column; }
-    // Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+F { fullscreen-window; }
     // Mod+Shift+T { toggle-window-floating; }
     // Mod+Shift+V { switch-focus-between-floating-and-tiling; }
     Mod+W { toggle-column-tabbed-display; }
@@ -225,13 +186,14 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // === Screenshots ===
-    XF86Launch1 { screenshot; }
-    Ctrl+XF86Launch1 { screenshot-screen; }
-    Alt+XF86Launch1 { screenshot-window; }
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Mod+Print { screenshot; }
+    Mod+Shift+Print { screenshot-screen; }
+    Mod+Ctrl+Print { screenshot-window; }
     // === System Controls ===
+    Mod+Shift+Y hotkey-overlay-title="Time and Weather" {
+        spawn "/home/mark/.local/bin/notify-time-weather.sh";
+    }
     // Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     // Mod+Shift+P { power-off-monitors; }
 }
+    

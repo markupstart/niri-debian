@@ -1,0 +1,55 @@
+layer-rule {
+    match namespace="^awww-daemon$"
+    place-within-backdrop true
+}
+
+layout {
+  center-focused-column "never"
+  always-center-single-column
+  preset-column-widths {
+     proportion 0.33333
+     proportion 0.5
+     proportion 0.66667
+     }
+    default-column-width { proportion 0.3333; }
+    tab-indicator {
+        // off
+        hide-when-single-tab
+        place-within-column
+        gap 5
+        width 8
+        corner-radius 10
+        length total-proportion=0.986
+        position "left"
+        gaps-between-tabs 0
+        active-color "green"
+        inactive-color "gray"
+     }
+     
+        gaps 4
+
+       border {
+        off
+        width 4
+        active-color   "#707070"      // Neutral gray
+        inactive-color "#d0d0d0"      // Light gray
+        urgent-color   "#cc4444"      // Softer red
+    }
+       shadow {
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+        struts {
+        left 80
+        right 80
+        // top 64
+        // bottom 64
+    }
+
+        focus-ring {
+        width 2
+        }
+    
+}

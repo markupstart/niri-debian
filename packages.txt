@@ -46,6 +46,7 @@ fonts-ubuntu
 fonts-weather-icons
 fuse3
 fzf
+gdm3
 git
 gnome-weather
 gnupg
@@ -56,9 +57,8 @@ gvfs
 hipcc
 imagemagick
 jq
-kdenlive
-kitty
-lxappearance
+libreoffice
+libreoffice-gtk3
 make
 mako-notifier
 mangohud
@@ -71,7 +71,6 @@ nautilus
 neovim
 nftables
 ninja-build
-notify-osd
 nwg-look
 pamixer
 papers
@@ -86,7 +85,7 @@ pulsemixer
 qalculate-gtk
 qemu-system
 resvg
-rgxg
+ripgrep
 rocm-device-libs-17
 rocm-opencl-icd
 rocm-smi
@@ -124,7 +123,9 @@ winetricks
 wireplumber
 wl-clipboard
 wlr-randr
+xclip
 xwayland
+xsel
 xz-utils
 yelp
 zenity
